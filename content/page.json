@@ -8,8 +8,8 @@
                 "url" : "#!main"
             },
             {
-                "name": "Products",
-                "url" : "#!products"
+                "name": "Orders",
+                "url" : "#!orders"
             },
             {
                 "name": "About",
