@@ -219,11 +219,119 @@
             "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."
         },
         {
-            "title" : "Spoiled Rabbit & Smile Person",
+            "title" : "Lalylala",
             "anchor" : "product_25",
             "imagelink" : "content/images/product_25.jpeg",
             "description" : "Product description that describes how nice this product is and how awesome it is.",
             "productlink" : "#!product/25",
+            "category" : "special",
+            "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."
+        },
+        {
+            "title" : "Groot & Totoro",
+            "anchor" : "product_26",
+            "imagelink" : "content/images/product_26.jpeg",
+            "description" : "Product description that describes how nice this product is and how awesome it is.",
+            "productlink" : "#!product/26",
+            "category" : "keychain",
+            "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."
+        },
+        {
+            "title" : "BT21 Koya",
+            "anchor" : "product_27",
+            "imagelink" : "content/images/product_27.jpeg",
+            "description" : "Product description that describes how nice this product is and how awesome it is.",
+            "productlink" : "#!product/27",
+            "category" : "keychain",
+            "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."
+        },
+        {
+            "title" : "BT21 Tata",
+            "anchor" : "product_28",
+            "imagelink" : "content/images/product_28.jpeg",
+            "description" : "Product description that describes how nice this product is and how awesome it is.",
+            "productlink" : "#!product/28",
+            "category" : "keychain",
+            "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."
+        },
+        {
+            "title" : "Ketnipz",
+            "anchor" : "product_29",
+            "imagelink" : "content/images/product_29.jpeg",
+            "description" : "Product description that describes how nice this product is and how awesome it is.",
+            "productlink" : "#!product/29",
+            "category" : "keychain",
+            "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."
+        },
+        {
+            "title" : "BB8 and Whale",
+            "anchor" : "product_30",
+            "imagelink" : "content/images/product_30.jpeg",
+            "description" : "Product description that describes how nice this product is and how awesome it is.",
+            "productlink" : "#!product/30",
+            "category" : "keychain",
+            "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."
+        },
+        {
+            "title" : "Graduation Koala",
+            "anchor" : "product_31",
+            "imagelink" : "content/images/product_31.jpeg",
+            "description" : "Product description that describes how nice this product is and how awesome it is.",
+            "productlink" : "#!product/31",
+            "category" : "special",
+            "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."
+        },
+        {
+            "title" : "Pais Mascot",
+            "anchor" : "product_32",
+            "imagelink" : "content/images/product_32.jpeg",
+            "description" : "Product description that describes how nice this product is and how awesome it is.",
+            "productlink" : "#!product/32",
+            "category" : "special",
+            "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."
+        },
+        {
+            "title" : "Kimmidoll",
+            "anchor" : "product_33",
+            "imagelink" : "content/images/product_33.jpeg",
+            "description" : "Product description that describes how nice this product is and how awesome it is.",
+            "productlink" : "#!product/33",
+            "category" : "doll",
+            "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."
+        },
+        {
+            "title" : "Little Incredible Hulk",
+            "anchor" : "product_34",
+            "imagelink" : "content/images/product_34.jpeg",
+            "description" : "Product description that describes how nice this product is and how awesome it is.",
+            "productlink" : "#!product/34",
+            "category" : "doll",
+            "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."
+        },
+        {
+            "title" : "Pororo",
+            "anchor" : "product_35",
+            "imagelink" : "content/images/product_35.jpeg",
+            "description" : "Product description that describes how nice this product is and how awesome it is.",
+            "productlink" : "#!product/35",
+            "category" : "special",
+            "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."
+        },
+        {
+            "title" : "Stitch",
+            "anchor" : "product_36",
+            "imagelink" : "content/images/product_36.jpeg",
+            "description" : "Product description that describes how nice this product is and how awesome it is.",
+            "productlink" : "#!product/36",
+            "category" : "keychain",
+            "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."
+        },
+        {
+            "title" : "Wailord",
+            "anchor" : "product_37",
+            "imagelink" : "content/images/product_37.jpeg",
+            "description" : "Product description that describes how nice this product is and how awesome it is.",
+            "productlink" : "#!product/37",
             "category" : "keychain",
             "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."
         }
