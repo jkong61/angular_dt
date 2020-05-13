@@ -57,6 +57,11 @@
             "title" : "Reach us @",
             "email" : "bigcorporation@corp.com",
             "telephone" : "01-12345678"
+        },
+
+        "footer" : 
+        {
+            "email" : "101222148@students.swinburne.edu.my"
         }
     }
 }

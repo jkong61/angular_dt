@@ -5,13 +5,13 @@ var app = angular.module("myApp", ['ngRoute','ngSanitize']);
 app.controller("myController", function($scope, $http) 
 {
     // Initialize Models
-    $http.get('content/page.json').then((data) =>
+    $http.get('content/json/page.json').then((data) =>
     {
         console.log(data);
         $scope.page = data['data']['page'];
     });
 
-    $http.get('content/products.json').then((data) =>
+    $http.get('content/json/products.json').then((data) =>
     {
         // console.log(data);
         $scope.products = data['data']['products'];
@@ -26,7 +26,7 @@ app.controller("myController", function($scope, $http)
 
     // Set Footer information
     const date = new Date();
-    $scope.footer_description = `Designed by Jonathan Kong 10122148. Copyright © ${date.getFullYear()}`;
+    $scope.footer_year = `Copyright © ${date.getFullYear()}`;
 });
 
 
@@ -60,7 +60,7 @@ app.controller("productController", function ($scope, $routeParams)
 
 app.controller("disclaimerController", function ($scope,$http) 
 {
-    $http.get('content/disclaimer.json').then((data) =>
+    $http.get('content/json/disclaimer.json').then((data) =>
     {
         $scope.page = data['data']['disclaimer'];
     });

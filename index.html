@@ -17,9 +17,9 @@
     <body data-ng-app="myApp" data-ng-controller="myController">
 
         <!-- Navigation bar start -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
             <a class="navbar-brand mx-3" href="#">
-                <img src="content/pictures/logo.png" width="50px" height="50px" alt="">
+                <img src="content/pictures/logo.png" width="40px" height="40px" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -68,7 +68,7 @@
         
         <footer class="footer mt-2">
             <div class="container">
-              <span class="text-muted">{{footer_description}}</span>
+              <span class="text-muted">{{footer_year}}. Designed by Jonathan Kong Bo Yang. <a href="mailto:{{page.footer.email}}">{{page.footer.email}}</a></span>
             </div>
         </footer>
 
