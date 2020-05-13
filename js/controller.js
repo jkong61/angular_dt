@@ -7,7 +7,7 @@ app.controller("myController", function($scope, $http)
     // Initialize Models
     $http.get('content/json/page.json').then((data) =>
     {
-        console.log(data);
+        // console.log(data);
         $scope.page = data['data']['page'];
     });
 
@@ -42,6 +42,10 @@ app.config(["$routeProvider", function ($routeProvider)
         templateUrl: "templates/main_products_template.html",
         controller: "myController"
     })
+    .when('/order/:productID', {
+        templateUrl: "templates/main_products_template.html",
+        controller: "orderController"
+    })
     .when('/disclaimer', {
         templateUrl: "templates/disclaimer.html",
         controller: "disclaimerController"
@@ -58,6 +62,15 @@ app.controller("productController", function ($scope, $routeParams)
     $scope.product = $scope.products[id-1];
 });
 
+// Controller for routing to order product
+app.controller("orderController", function ($scope, $routeParams) 
+{
+    let product_id = $routeParams.productID;
+    $scope.product_id = product_id.split("_")[1];
+    console.log($scope.product_id);
+});
+
+// Controller for routing to disclaimer
 app.controller("disclaimerController", function ($scope,$http) 
 {
     $http.get('content/json/disclaimer.json').then((data) =>
