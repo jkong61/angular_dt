@@ -46,6 +46,10 @@ app.config(["$routeProvider", function ($routeProvider)
         templateUrl: "templates/main_products_template.html",
         controller: "orderController"
     })
+    .when('/trackorders', {
+        templateUrl: "templates/main_products_template.html",
+        controller: "trackOrderController"
+    })
     .when('/disclaimer', {
         templateUrl: "templates/disclaimer.html",
         controller: "disclaimerController"
@@ -70,6 +74,12 @@ app.controller("orderController", function ($scope, $routeParams)
     console.log($scope.product_id);
 });
 
+// Controller for routing to order tracking
+app.controller("trackOrderController", function ($scope) 
+{
+    console.log("Tracking Order");
+});
+
 // Controller for routing to disclaimer
 app.controller("disclaimerController", function ($scope,$http) 
 {
@@ -77,5 +87,4 @@ app.controller("disclaimerController", function ($scope,$http)
     {
         $scope.page = data['data']['disclaimer'];
     });
-
 });
