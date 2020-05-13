@@ -1,0 +1,27 @@
+{
+    "products" : 
+    [
+        {
+            "title" : "Mountain 1",
+            "imagelink" : "content/pictures/img_mountains.jpg",
+            "description" : "Product description that describes how nice this product is and how awesome it is.",
+            "productlink" : "#!product/1",
+            "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."
+        },
+        {
+            "title" : "Mountain 2",
+            "imagelink" : "content/pictures/img_nature.jpg",
+            "description" : "Product description that describes how nice this product is and how awesome it is.",
+            "productlink" : "#!product/2",
+            "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."
+
+        },
+        {
+            "title" : "Mountain 3",
+            "imagelink" : "content/pictures/img_snow.jpg",
+            "description" : "Product description that describes how nice this product is and how awesome it is.",
+            "productlink" : "#!product/3",
+            "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."
+        }
+    ]
+}

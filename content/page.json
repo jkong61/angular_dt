@@ -1,0 +1,62 @@
+{
+    "page" : 
+    {
+        "nav_links" : 
+        [
+            {
+                "name" : "Home",
+                "url" : "#!main"
+            },
+            {
+                "name": "Products",
+                "url" : "#!products"
+            },
+            {
+                "name": "About",
+                "url" : "#!about"
+            },
+            {
+                "name": "Disclaimer",
+                "url" : "#!disclaimer"
+            }
+        ],
+
+        "jumbotron" : 
+        {
+            "name" : "Big Corporation Corp.",
+            "description" : "We are a major corporation that sells many many things to people and we are the embodiment of CAPITALISM!"
+        },
+
+        "content" :
+        {
+            "heading" : "Amigurumi"
+        },
+
+        "contact_us" :
+        {
+            "title" : "Contact us @",
+            "links" :[
+                {
+                    "name" : "Facebook",
+                    "url" : "https://www.facebook.com"
+                },
+                {
+                    "name" : "Twitter",
+                    "url" : "https://www.twitter.com"
+                }]
+        },
+
+        "corp_info" :
+        {
+            "title" : "About Us",
+            "profile" : "Big Corporation Corp. was established in 2020 with the aim of showcasing the amazing mountain ranges available for sale through exclusive partners."
+        },
+
+        "contact_details" :
+        {
+            "title" : "Reach us @",
+            "email" : "bigcorporation@corp.com",
+            "telephone" : "01-12345678"
+        }
+    }
+}

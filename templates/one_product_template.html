@@ -1,0 +1,24 @@
+<section>
+    <div class="row my-5">
+        <!-- Title Header Start -->
+        <div class="row">
+            <h1 class="col-md-12">
+                {{product.title}}
+            </h1>
+        </div>
+        <!-- Title Header End -->
+    
+        <!-- Product content start -->
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <img class="img-fluid rounded float-left" ng-src="{{product.imagelink}}" alt="">
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <p class="text-left text-md-right"><strong>Product Description</strong></p>
+                <p>{{product.fulldescription}}</p>
+                <a href="#!main" class="btn btn-outline-secondary float-right">Go Back</a>
+            </div>
+        </div>
+        <!-- Product content end -->
+    </div>    
+</section>

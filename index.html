@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Template that uses Bootstrap</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Bootstrap -->
+        <link href = "framework/css/bootstrap.min.css" rel="stylesheet" />
+        <link href = "framework/css/style.css" rel="stylesheet" />
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+            <!--[if lt IE 9]>
+                <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+                <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif ]]-->
+    </head>
+    <body data-ng-app="myApp" data-ng-controller="myController">
+
+        <!-- Navigation bar start -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand mx-3" href="#">
+                <img src="content/pictures/logo.png" width="50px" height="50px" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li data-ng-repeat="links in page.nav_links">
+                        <a class="nav-link" data-ng-click="select($index)" data-ng-class="{active: $index===selected_index}" href="{{links.url}}">{{links.name}}</a>
+                    </li>
+                </ul>    
+            </div>
+        </nav>
+        <!-- Navigation Bar end -->
+
+
+        <div class="container" >            
+            <!-- Content start -->
+            <div data-ng-view></div>            
+            <!-- Content end -->
+
+            <hr class="my-4">
+
+            <!-- Corporation information start -->
+            <section class="row my-3">
+                <div class="col-md-3 col-xs-12">
+                    <h5>Reach us @</h5>
+                    <p>Email us @ <a href="mailto:bigcorporation@corp.com">"bigcorporation@corp.com"</a></p>
+                    <p>Call us at <strong>01-12345678</strong></p>
+                </div>
+                <div class="col-md-6 col-xs-12 text-left text-md-center">
+                    <h5>{{page.corp_info.title}}</h5>
+                    <p>{{page.corp_info.profile}}</p>
+                </div>
+                <div class="col-md-3 col-xs-12 text-left text-md-right">
+                    <h5>{{page.contact_us.title}}</h5>
+                    <ul style="list-style: none;">
+                        <li data-ng-repeat="contact in page.contact_us.links">
+                            <a href="{{contact.url}}">{{contact.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <!-- Corporation information end -->
+        </div>
+        
+        <footer class="footer mt-2">
+            <div class="container">
+              <span class="text-muted">{{footer_description}}</span>
+            </div>
+        </footer>
+
+        <!-- jQuery required for Bootstrap's JavaScript plugins) -->
+        <script src = "framework/js/jquery.min.js"></script>
+        <noscript>Your browser does not support JavaScript!</noscript>
+        <!-- All Bootstrap plug ins file -->
+        <script src = "framework/js/bootstrap.min.js"></script>
+        <noscript>Your browser does not support JavaScript!</noscript>
+        <!-- Basic AngularJS -->
+        <script src = "framework/js/angular.min.js "></script>
+        <noscript>Your browser does not support JavaScript!</noscript>
+        <!-- AngularJS Routing -->
+        <script src = "framework/js/angular-route.min.js "></script>
+        <noscript>Your browser does not support JavaScript!</noscript>
+        <!-- AngularJS Sanitize -->
+        <script src = "framework/js/angular-sanitize.min.js "></script>
+        <noscript>Your browser does not support JavaScript!</noscript>
+        <!-- Custom Controller -->
+        <script src = "js/controller.js "></script>
+        <noscript>Your browser does not support JavaScript!</noscript>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<!-- Jumbotron start -->
+<div class="row">
+    <div class="jumbotron jumbotron-fluid my-3 col-md-12">
+        <div class="container">
+            <h1 class="display-4">Big Corporation Corp.</h1>
+            <p class="lead">We are a major corporation that sells many many things to people and we are the embodiment of CAPITALISM!</p>
+        </div>
+    </div>    
+</div>
+<!-- Jumborton end -->
+
+
+<div class="row my-3">
+    <div class="row col-md-12">
+        <h1>{{page.content.heading}}</h1>
+    </div>
+    
+    <!-- Products start -->
+    <div class="row">
+        <div class="card-columns">
+            <div class="card" data-ng-repeat="product in products">
+                <img class="card-img-top" ng-src="{{product.imagelink}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.title}}</h5>
+                    <p class="card-text">{{product.description}}</p>
+                    <a href="{{product.productlink}}" class="btn btn-outline-secondary">More Info</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Products end -->
+</div>
