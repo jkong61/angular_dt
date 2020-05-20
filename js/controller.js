@@ -4,18 +4,23 @@ var app = angular.module("myApp", ['ngRoute','ngSanitize']);
 
 app.controller("myController", function($scope, $http) 
 {
+
     // Initialize Models
-    $http.get('content/json/page.json').then((data) =>
+    $http.get('content/json/page.json',["application/json"])
+    .then((response) =>
     {
         // console.log(data);
-        $scope.page = data['data']['page'];
+        $scope.page = response.data.page;
     });
 
-    $http.get('content/json/products.json').then((data) =>
+    $http.get('content/json/products.json',["application/json"])
+    .then((response) =>
     {
         // console.log(data);
-        $scope.products = data['data']['products'];
+        $scope.products = response.data.products;
     });
+
+    $scope.order = {};
 
     // To set the nav bar links as active
     $scope.selected_index = 0;
@@ -24,9 +29,17 @@ app.controller("myController", function($scope, $http)
         $scope.selected_index = index;
     }
 
+    $scope.showform = false;
+    $scope.showdetails = true;
+
     // Set Footer information
     const date = new Date();
     $scope.footer_year = `Copyright © ${date.getFullYear()}`;
+
+    $scope.submit = function()
+    {
+        console.log($scope);
+    }
 });
 
 
@@ -43,7 +56,7 @@ app.config(["$routeProvider", function ($routeProvider)
         controller: "myController"
     })
     .when('/order/:productID', {
-        templateUrl: "templates/main_products_template.html",
+        templateUrl: "templates/one_product_template.html",
         controller: "orderController"
     })
     .when('/trackorders', {
@@ -62,16 +75,22 @@ app.config(["$routeProvider", function ($routeProvider)
 // Controller for routing to product
 app.controller("productController", function ($scope, $routeParams) 
 {
+    $('html,body').scrollTop(0);
     const id = $routeParams.productID;
     $scope.product = $scope.products[id-1];
+    $scope.showform = false;
+    $scope.showdetails = true;
+
 });
 
 // Controller for routing to order product
 app.controller("orderController", function ($scope, $routeParams) 
 {
     let product_id = $routeParams.productID;
-    $scope.product_id = product_id.split("_")[1];
-    console.log($scope.product_id);
+    product_id = parseInt(product_id.split("_")[1]);
+    $scope.product = $scope.products[product_id - 1];
+    $scope.showdetails = false;
+    $scope.showform = true;
 });
 
 // Controller for routing to order tracking
@@ -83,8 +102,10 @@ app.controller("trackOrderController", function ($scope)
 // Controller for routing to disclaimer
 app.controller("disclaimerController", function ($scope,$http) 
 {
-    $http.get('content/json/disclaimer.json').then((data) =>
+    $http.get('content/json/disclaimer.json',["application/json"])
+    .then((response) =>
     {
-        $scope.page = data['data']['disclaimer'];
+        $scope.page = response.data.disclaimer;
+        console.log($scope.page);
     });
 });
