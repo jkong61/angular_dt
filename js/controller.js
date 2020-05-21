@@ -1,5 +1,4 @@
 // By Jonathan Kong (101222148)
-
 var app = angular.module("myApp", ['ngRoute','ngSanitize']);
 
 app.controller("myController", function($scope, $http) 
@@ -21,6 +20,8 @@ app.controller("myController", function($scope, $http)
     });
 
     $scope.order = {};
+    $scope.orders = [];
+    $scope.form = {};
 
     // To set the nav bar links as active
     $scope.selected_index = 0;
@@ -36,9 +37,25 @@ app.controller("myController", function($scope, $http)
     const date = new Date();
     $scope.footer_year = `Copyright © ${date.getFullYear()}`;
 
-    $scope.submit = function()
+    // Set Formlisteners
+    $scope.submit = function(data)
     {
-        console.log($scope);
+
+        $scope.order.id = generateRandomString();
+        $scope.order.product = data;
+        $scope.orders.push($scope.order);
+        $scope.order = {};
+        $scope.form.orderForm.$setPristine();
+        $scope.form.orderForm.$setUntouched();
+
+        console.log($scope.orders);
+    }
+
+    $scope.reset = function()
+    {
+        $scope.order = {};
+        $scope.form.orderForm.$setPristine();
+        $scope.form.orderForm.$setUntouched();
     }
 });
 
@@ -109,3 +126,50 @@ app.controller("disclaimerController", function ($scope,$http)
         console.log($scope.page);
     });
 });
+
+app.directive('myNoNumDirective', function()
+{
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attr, mCtrl) 
+        {
+            function nameValidation(value) 
+            {
+                patt = new RegExp("[0-9]");
+                if (patt.test(value)) 
+                    mCtrl.$setValidity('noNumbers', false);
+                else 
+                    mCtrl.$setValidity('noNumbers', true);
+                return value;
+            }
+            mCtrl.$parsers.push(nameValidation);
+        }
+    };
+});
+
+// Directive to check Regex
+app.directive('regexDirective', function()
+{
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attr, mCtrl) 
+        {
+            function passwordValidation(value) 
+            {
+                patt = new RegExp(attr.patt);
+                if (patt.test(value)) 
+                    mCtrl.$setValidity('matchRegex', true);
+                else 
+                    mCtrl.$setValidity('matchRegex', false);
+                return value;
+            }
+            mCtrl.$parsers.push(passwordValidation);
+        }
+    };
+});
+
+
+function generateRandomString()
+{
+    return Math.random().toString(20).substr(2, 6)
+}
