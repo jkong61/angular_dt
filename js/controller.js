@@ -18,8 +18,6 @@ app.controller("myController", function($scope, $http, productData)
         productData.products = response.data.products;
     });
 
-    $scope.form = {};
-
     // To set the nav bar links as active
     $scope.selected_index = 0;
     $scope.select = (index) =>
@@ -60,7 +58,11 @@ app.config(["$routeProvider", function ($routeProvider)
         controller: "orderSuccessController"
     })
     .when('/trackorders', {
-        templateUrl: "templates/main_products_template.html",
+        templateUrl: "templates/orders_template.html",
+        controller: "trackOrderController"
+    })
+    .when('/trackorders/:orderID', {
+        templateUrl: "templates/orders_template.html",
         controller: "trackOrderController"
     })
     .when('/disclaimer', {
@@ -88,8 +90,7 @@ app.controller("productController", function ($scope, $routeParams, productData)
 app.controller("orderController", function ($scope, $routeParams, productData) 
 {
     let product_id = $routeParams.productID;
-    product_id = parseInt(product_id.split("_")[1]);
-    $scope.product = productData.products[product_id - 1];
+    $scope.product = productData.getProduct(product_id);
     $scope.showdetails = false;
     $scope.showform = true;
     $scope.showsuccess = false;
@@ -105,17 +106,45 @@ app.controller("orderSuccessController", function ($scope, $routeParams, product
 
     const orderID = $routeParams.orderID;
     let product_id = $routeParams.productID;
-    product_id = parseInt(product_id.split("_")[1]);
-    $scope.product = productData.products[product_id - 1];
+    $scope.product = productData.getProduct(product_id);
 
-    const index = orderData.orders.map(e => e.id).indexOf(orderID);
-    $scope.orderinfo = orderData.orders[index];
+    $scope.orderinfo = orderData.getOrder(orderID);
+    console.log($scope.orderinfo);
 });
 
 // Controller for routing to order tracking
-app.controller("trackOrderController", function ($scope) 
+app.controller("trackOrderController", function ($scope, $routeParams, $location, $http, orderData) 
 {
-    console.log("Tracking Order");
+    $http.get('content/json/orderpage.json',["application/json"])
+    .then((response) =>
+    {
+        $scope.page = response.data.page;
+    });
+
+    const orderID = $routeParams.orderID;
+    if(orderID == undefined)
+    {
+        console.log("Empty order id in request");
+        $scope.showsearchform = true;
+    }
+    else
+    {
+        const order = orderData.getOrder(orderID);
+        if(order)
+        {
+            console.log(order);
+        }
+        else
+        {
+            $scope.showsearchform = true;
+            console.log(`Order ${orderID} does not exist`);
+        }
+    }
+
+    $scope.searchOrder = (data) =>
+    {
+        $location.path(`/trackorders/${data}`);
+    }
 });
 
 // Controller for routing to disclaimer
@@ -125,7 +154,6 @@ app.controller("disclaimerController", function ($scope,$http)
     .then((response) =>
     {
         $scope.page = response.data.disclaimer;
-        console.log($scope.page);
     });
 });
 
@@ -138,19 +166,17 @@ app.controller("formController", function($scope, $location, orderData)
     $scope.submit = function(data)
     {
         let orderid = generateRandomString();
-        order.id = orderid;
+        order.orderid = orderid;
         order.product = data;
 
         // Push order to master order list
         orderData.addOrder(order);
-        console.log(orderData);
         // Reset order variable
         order = {};
 
         // Reset form
         $scope.orderForm.$setPristine();
         $scope.orderForm.$setUntouched();
-
 
         $location.path(`/success/${data.anchor}/${orderid}`);
     }
@@ -206,21 +232,53 @@ app.directive('regexDirective', function()
 });
 
 
-// Persistant global product data
+// Persistant global product data service
 app.service("productData", function()
 {    
     this.products = {};
+
+    this.getProduct = function (data)
+    {
+        const index = this.products.map(e => e.anchor).indexOf(data);
+        if(index == -1)
+            return;
+        return this.products[index];
+    }
 });
 
-// Persistant global order data
+// Persistant global order data service
 app.service("orderData", function()
 {    
-    this.orders = [];
+    this.orders = 
+    [
+        {
+            "orderid" : "abc",
+            "product" : 
+            {
+                "title" : "Little Whales",
+                "anchor" : "product_1",
+                "imagelink" : "content/images/product_1.jpeg",
+                "description" : "Product description that describes how nice this product is and how awesome it is.",
+                "productlink" : "#!product/1",
+                "price" : 10,
+                "category" : "keychain",
+                "fulldescription" : "Product description that describes how nice this product is and how awesome it is. The only difference is that there is a little bit more words to help me fill out this space with placeholder information. Just admire how nice this mountain looks like. Image obtained from w3schools."    
+            }
+        }
+    ];
 
     this.addOrder = function(data)
     {
-        if(data != null)
+        if(data != null || data != undefined)
             this.orders.push(data);
+    }
+
+    this.getOrder = function(orderid)
+    {
+        const index = this.orders.map(e => e.orderid).indexOf(orderid);
+        if(index == -1)
+            return;
+        return this.orders[index];
     }
 });
 

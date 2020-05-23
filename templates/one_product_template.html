@@ -116,7 +116,11 @@
                 <!-- Show Order success start -->
                 <div data-ng-if="showsuccess">
                     <h2>Order Successful!</h2>
-                    <p>Thank you for ordering. Please keep a record of your tracking number: <strong>{{orderinfo.id}}</strong></p>
+                    <p>Thank you for ordering.<br/> Please keep a record of your tracking number: </p>
+                    <h2>
+                        <strong>{{orderinfo.orderid}}</strong>
+                    </h2>
+                    <a href="#!/trackorders/{{orderinfo.orderid}}" class="btn btn-outline-secondary">Go to Order</a>
                 </div>
                 <!-- Show Order sucess end -->
             </div>
