@@ -14,6 +14,7 @@
                 <img class="img-fluid rounded shadow float-left mb-4 mb-sm-0" ng-src="{{product.imagelink}}" alt="">
             </div>
             <div class="col-md-6 col-xs-12">
+                <!-- Show product details start -->
                 <div data-ng-if="showdetails">
 
                     <!-- Show Details start -->
@@ -25,9 +26,12 @@
                     </div>
                     <!-- Show Details End -->
                 </div>
+                <!-- Show product details end -->
+
+                <!-- Show Order Form start -->
                 <div data-ng-if="showform">
                     <!-- Show Form start -->
-                    <form data-ng-submit = "submit(product)" novalidate="novalidate" name="form.orderForm">
+                    <form data-ng-submit = "submit(product)" novalidate="novalidate" name="orderForm" data-ng-controller="formController">
 
                         <!-- First name Last Name Start -->
                         <div class="form-row">
@@ -35,11 +39,11 @@
                             <div class="form-group col-6">
                               <label for="input_fname">First Name</label>
                               <input type="text" class="form-control" data-ng-model-options="{ updateOn: 'blur' }"
-                                data-ng-class="{'is-valid' : form.orderForm.input_fname.$valid, 'is-invalid' : form.orderForm.input_fname.$touched && form.orderForm.input_fname.$invalid}"
+                                data-ng-class="{'is-valid' : orderForm.input_fname.$valid, 'is-invalid' : orderForm.input_fname.$touched && orderForm.input_fname.$invalid}"
                                 name="input_fname" data-ng-model="order.firstname" aria-describedby="firstnamehelper" id="input_fname" required my-no-num-directive/>
                                 <small id="firstnamehelper" class="form-text text-danger">
-                                    <span data-ng-show="form.orderForm.input_fname.$error.noNumbers">Can only contain letters.</span>
-                                    <span class="text-info" data-ng-show="form.orderForm.input_fname.$error.required">Required</span>
+                                    <span data-ng-show="orderForm.input_fname.$error.noNumbers">Can only contain letters.</span>
+                                    <span class="text-info" data-ng-show="orderForm.input_fname.$error.required">Required</span>
                                 </small>
                             </div>
                             <!-- First Name End -->
@@ -48,11 +52,11 @@
                             <div class="form-group col-6">
                                 <label for="input_lname">Last Name</label>
                                 <input type="text" class="form-control" data-ng-model-options="{ updateOn: 'blur' }"
-                                data-ng-class="{'is-valid' : form.orderForm.input_lname.$valid, 'is-invalid' : form.orderForm.input_lname.$touched && form.orderForm.input_lname.$invalid}"
+                                data-ng-class="{'is-valid' : orderForm.input_lname.$valid, 'is-invalid' : orderForm.input_lname.$touched && orderForm.input_lname.$invalid}"
                                 name="input_lname" data-ng-model="order.lastname" aria-describedby="lastnamehelper" id="input_lname" required my-no-num-directive>
                                 <small id="lastnamehelper" class="form-text text-danger">
-                                    <span data-ng-show="form.orderForm.input_lname.$error.noNumbers">Can only contain letters.</span>
-                                    <span class="text-info" data-ng-show="form.orderForm.input_lname.$error.required">Required</span>
+                                    <span data-ng-show="orderForm.input_lname.$error.noNumbers">Can only contain letters.</span>
+                                    <span class="text-info" data-ng-show="orderForm.input_lname.$error.required">Required</span>
                                 </small>
                             </div>
                             <!-- Last Name End -->
@@ -65,11 +69,11 @@
                             <div class="form-group col-6">
                                 <label for="input_email">Email</label>
                                 <input type="email" class="form-control" name="input_email" data-ng-model-options="{ updateOn: 'blur' }"
-                                data-ng-class="{'is-valid' : form.orderForm.input_email.$valid, 'is-invalid' : form.orderForm.input_email.$touched && form.orderForm.input_email.$invalid}"
+                                data-ng-class="{'is-valid' : orderForm.input_email.$valid, 'is-invalid' : orderForm.input_email.$touched && orderForm.input_email.$invalid}"
                                 data-ng-model="order.email" aria-describedby="emailhelper" id="input_email" required>
                                 <small id="emailhelper" class="form-text text-danger">
-                                    <span data-ng-show="form.orderForm.input_email.$error.email">Incorrect Email Format</span>
-                                    <span class="text-info" data-ng-show="form.orderForm.input_email.$error.required">Required</span>
+                                    <span data-ng-show="orderForm.input_email.$error.email">Incorrect Email Format</span>
+                                    <span class="text-info" data-ng-show="orderForm.input_email.$error.required">Required</span>
                                 </small>
                             </div>
                             <!-- Email End -->
@@ -78,11 +82,11 @@
                             <!-- Phone Start -->
                             <div class="form-group col-6">
                                 <label for="input_phone">Phone Number</label>
-                                <input type="text" class="form-control" name="input_phone" placeholder="60141234567" patt="\b(60)[1-4,6-9]-*[0-9]{8}\b" data-ng-model-options="{ updateOn: 'blur' }"
-                                data-ng-class="{'is-invalid' : form.orderForm.input_phone.$touched && form.orderForm.input_phone.$invalid}"
+                                <input type="text" class="form-control" name="input_phone" placeholder="60141234567" patt="\b[\+]?(60)[1-4,6-9]-*[0-9]{8}\b" data-ng-model-options="{ updateOn: 'blur' }"
+                                data-ng-class="{'is-invalid' : orderForm.input_phone.$touched && orderForm.input_phone.$invalid}"
                                 data-ng-model="order.phone" id="input_phone" aria-describedby="phonehelper" regex-directive>
                                 <small id="phonehelper" class="form-text text-danger">
-                                    <span data-ng-show="form.orderForm.input_phone.$error.matchRegex">Not a valid Malaysian Phone Number.</span>
+                                    <span data-ng-show="orderForm.input_phone.$error.matchRegex">Not a valid Malaysian Phone Number.</span>
                                 </small>
                             </div>
                             <!-- Phone End -->
@@ -100,13 +104,21 @@
 
                         <div class="float-right">
                             <button class="btn btn-outline-secondary" 
-                            data-ng-class="{'disabled' : form.orderForm.$invalid, 'btn-outline-success' : form.orderForm.$valid}" 
-                            data-ng-disabled="form.orderForm.$invalid">Submit</button>
+                            data-ng-class="{'disabled' : orderForm.$invalid, 'btn-outline-success' : orderForm.$valid}" 
+                            data-ng-disabled="orderForm.$invalid">Submit</button>
                             <a href="#!main/#{{product.anchor}}" data-ng-onclick="reset()" class="btn btn-outline-secondary">Cancel</a>
                         </div>
                     </form>
                     <!-- Show Form end -->
                 </div>
+                <!-- Show Order Form end -->
+
+                <!-- Show Order success start -->
+                <div data-ng-if="showsuccess">
+                    <h2>Order Successful!</h2>
+                    <p>Thank you for ordering. Please keep a record of your tracking number: <strong>{{orderinfo.id}}</strong></p>
+                </div>
+                <!-- Show Order sucess end -->
             </div>
         </div>
         <!-- Product/Form content end -->
