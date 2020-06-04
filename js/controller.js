@@ -53,7 +53,7 @@ app.config(["$routeProvider", function ($routeProvider)
         templateUrl: "templates/one_product_template.html",
         controller: "orderController"
     })
-    .when('/success/:productID/:orderID', {
+    .when('/success/:orderID', {
         templateUrl: "templates/one_product_template.html",
         controller: "orderSuccessController"
     })
@@ -105,10 +105,9 @@ app.controller("orderSuccessController", function ($scope, $routeParams, product
     $scope.showsuccess = true;
 
     const orderID = $routeParams.orderID;
-    let product_id = $routeParams.productID;
-    $scope.product = productData.getProduct(product_id);
 
     $scope.orderinfo = orderData.getOrder(orderID);
+    $scope.product = productData.getProduct($scope.orderinfo.product.anchor);
     console.log($scope.orderinfo);
 });
 
@@ -141,9 +140,13 @@ app.controller("trackOrderController", function ($scope, $routeParams, $location
         }
     }
 
+    // Function to search order
     $scope.searchOrder = (data) =>
     {
-        $location.path(`/trackorders/${data}`);
+        if(data)
+            $location.path(`/trackorders/${data}`);
+        else
+            $location.path(`/trackorders`);
     }
 });
 
@@ -178,7 +181,7 @@ app.controller("formController", function($scope, $location, orderData)
         $scope.orderForm.$setPristine();
         $scope.orderForm.$setUntouched();
 
-        $location.path(`/success/${data.anchor}/${orderid}`);
+        $location.path(`/success/${orderid}`);
     }
 
     $scope.reset = function()
@@ -187,6 +190,25 @@ app.controller("formController", function($scope, $location, orderData)
         $scope.orderForm.$setPristine();
         $scope.orderForm.$setUntouched();
     }
+});
+
+// Set up Custom Card View Directive
+app.directive('card',function(){
+	
+    var object = {};
+    var card_object = function(scope,element,attributes)
+    {
+        scope.anchor = attributes.anchor;
+        scope.imagelink = attributes.imagelink;
+        scope.title = attributes.title;
+        scope.description = attributes.description;
+        scope.link = attributes.link;
+    }
+    object.restrict ='E';
+    object.link = card_object;
+    object.templateUrl = 'templates/card_view.html';
+    object.scope = {};
+	return object;
 });
 
 // Set up Form directives
