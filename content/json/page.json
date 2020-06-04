@@ -12,8 +12,8 @@
                 "url" : "#!trackorders"
             },
             {
-                "name": "About",
-                "url" : "#!about"
+                "name": "Search",
+                "url" : "#!search"
             },
             {
                 "name": "Disclaimer",

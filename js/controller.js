@@ -29,7 +29,8 @@ app.controller("myController", function($scope, $http, productData)
     $scope.showform = false;
     $scope.showsuccess = false;
     $scope.showdetails = true;
-
+    $scope.showJumbotron = true;
+    $scope.showSearch = false;
 
     // Set Footer information
     const date = new Date();
@@ -68,6 +69,10 @@ app.config(["$routeProvider", function ($routeProvider)
     .when('/disclaimer', {
         templateUrl: "templates/disclaimer.html",
         controller: "disclaimerController"
+    })
+    .when('/search', {
+        templateUrl: "templates/main_products_template.html",
+        controller: "searchController"
     })
     .otherwise({
         redirectTo: "/main"
@@ -158,6 +163,15 @@ app.controller("disclaimerController", function ($scope,$http)
     {
         $scope.page = response.data.disclaimer;
     });
+});
+
+// Controller for routing to disclaimer
+app.controller("searchController", function ($scope, productData) 
+{
+    $scope.showJumbotron = false;
+    $scope.showSearch = true;
+
+    $scope.categories = productData.getCategories();
 });
 
 // Form Controller to handle logic of forms
@@ -254,17 +268,38 @@ app.directive('regexDirective', function()
 });
 
 
+// Custome filter to capitalize the first letter of a string
+app.filter("capitalize", function()
+{
+    return function(input) 
+    {
+        return input.charAt(0).toUpperCase() + input.slice(1)
+    }
+});
+
+
 // Persistant global product data service
 app.service("productData", function()
 {    
     this.products = {};
-
+    let categories = new Array();
     this.getProduct = function (data)
     {
         const index = this.products.map(e => e.anchor).indexOf(data);
         if(index == -1)
             return;
         return this.products[index];
+    }
+
+    this.getCategories = function ()
+    {
+        this.products.forEach(element =>
+        {
+            const category = element.category;
+            if(!categories.includes(category))
+                categories.push(category);
+        })
+        return categories
     }
 });
 
