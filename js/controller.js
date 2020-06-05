@@ -54,10 +54,6 @@ app.config(["$routeProvider", function ($routeProvider)
         templateUrl: "templates/one_product_template.html",
         controller: "orderController"
     })
-    .when('/success/:orderID', {
-        templateUrl: "templates/one_product_template.html",
-        controller: "orderSuccessController"
-    })
     .when('/trackorders', {
         templateUrl: "templates/orders_template.html",
         controller: "trackOrderController"
@@ -102,22 +98,8 @@ app.controller("orderController", function ($scope, $routeParams, productData)
 
 });
 
-// Controller for handling success forms
-app.controller("orderSuccessController", function ($scope, $routeParams, productData, orderData) 
-{
-    $scope.showdetails = false;
-    $scope.showform = false;
-    $scope.showsuccess = true;
-
-    const orderID = $routeParams.orderID;
-
-    $scope.orderinfo = orderData.getOrder(orderID);
-    $scope.product = productData.getProduct($scope.orderinfo.product.anchor);
-    console.log($scope.orderinfo);
-});
-
 // Controller for routing to order tracking
-app.controller("trackOrderController", function ($scope, $routeParams, $location, $http, orderData) 
+app.controller("trackOrderController", function ($scope, $routeParams, $http, $location, orderData) 
 {
     $http.get('content/json/orderpage.json',["application/json"])
     .then((response) =>
@@ -136,12 +118,15 @@ app.controller("trackOrderController", function ($scope, $routeParams, $location
         const order = orderData.getOrder(orderID);
         if(order)
         {
+            // Show orders info here.
+            $scope.showOrderDetails = true;
+            $scope.order = order;
             console.log(order);
         }
         else
         {
             $scope.showsearchform = true;
-            console.log(`Order ${orderID} does not exist`);
+            $scope.error = `Order ${orderID} does not exist.`;
         }
     }
 
@@ -170,32 +155,33 @@ app.controller("searchController", function ($scope, productData)
 {
     $scope.showJumbotron = false;
     $scope.showSearch = true;
-
     $scope.categories = productData.getCategories();
 });
 
 // Form Controller to handle logic of forms
-app.controller("formController", function($scope, $location, orderData)
+app.controller("formController", function($scope, orderData, productData)
 {
     let order = {};
 
     // Set Formlisteners
-    $scope.submit = function(data)
+    $scope.submit = function(data, customerdetails)
     {
         let orderid = generateRandomString();
         order.orderid = orderid;
         order.product = data;
+        order.customer = customerdetails;
 
         // Push order to master order list
         orderData.addOrder(order);
         // Reset order variable
-        order = {};
+        $scope.reset();
 
-        // Reset form
-        $scope.orderForm.$setPristine();
-        $scope.orderForm.$setUntouched();
-
-        $location.path(`/success/${orderid}`);
+        // Change view to success
+        $scope.$parent.$parent.showdetails = false;
+        $scope.$parent.$parent.showform = false;
+        $scope.$parent.$parent.showsuccess = true;
+        $scope.$parent.$parent.orderinfo = orderData.getOrder(orderid);
+        $scope.product = productData.getProduct($scope.orderinfo.product.anchor);
     }
 
     $scope.reset = function()

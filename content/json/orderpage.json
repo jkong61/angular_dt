@@ -5,6 +5,23 @@
         "form" : 
         {
             "label" : "Order Tracking Number"
+        },
+        "orderdetails" :
+        {
+            "header" : "Order Details",
+            "customer" : 
+            {
+                "header" : "Customer Details",
+                "firstnamelabel" : "First Name",
+                "lastnamelabel" : "Last Name",
+                "phonelabel" : "Phone Number",
+                "emaillabel" : "Email Address",
+                "commentlabel" : "Additional Comments"
+            },
+            "product" :
+            {
+                "header" : "Product Details"
+            }
         }
     }
 }

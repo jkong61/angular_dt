@@ -1,24 +1,26 @@
-<section>
-    <div class="card border-dark my-5">
-        <div class="card-body">
-            <!-- Title Header Start -->
-            <h1 class="card-title">
-                {{page.header_title}}
-            </h1>
-            <!-- Title Header End -->
-        
-            <!-- Disclaimer content start -->
-            <div class="row">
-                <div class="col-md-12 col-xs-12">
-                    <ul>
-                        <li data-ng-repeat="bullets in page.content">
-                            <span data-ng-bind-html="bullets"></span>
-                        </li>
-                    </ul>                
+<div class="container">
+    <section>
+        <div class="card border-dark my-5">
+            <div class="card-body">
+                <!-- Title Header Start -->
+                <h1 class="card-title">
+                    {{page.header_title}}
+                </h1>
+                <!-- Title Header End -->
+            
+                <!-- Disclaimer content start -->
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <ul>
+                            <li data-ng-repeat="bullets in page.content">
+                                <span data-ng-bind-html="bullets"></span>
+                            </li>
+                        </ul>                
+                    </div>
                 </div>
+                <!-- Disclaimer content end -->
+                <a href="#!main" class="btn btn-outline-secondary">Go Back</a>
             </div>
-            <!-- Disclaimer content end -->
-            <a href="#!main" class="btn btn-outline-secondary">Go Back</a>
-        </div>
-    </div>    
-</section>
+        </div>    
+    </section>
+</div>

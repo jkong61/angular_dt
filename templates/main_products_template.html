@@ -1,6 +1,6 @@
 <!-- Jumbotron start -->
 <div class="row">
-    <div class="jumbotron my-3 col-md-12">
+    <div class="jumbotron jumbotron-fluid col-md-12">
         <div class="container">
             <div data-ng-show="showJumbotron">
                 <h1 class="display-4">Kerousheworks</h1>
@@ -9,7 +9,7 @@
 
             <div data-ng-show="showSearch">
                 <form action="">
-                    <h1 class="display-4 text-center">Looking for something?</h1>
+                    <h1 class="display-4">Looking for something?</h1>
                     <div class="container">
                         <div class="form-group form-row">
                             <label class="lead" for="productSearch">Search</label>
@@ -19,7 +19,7 @@
                             <label class="lead" for="categorysearch">Category</label>
                             <select data-ng-model="obj.category" class="custom-select" id="categorysearch">    
                                 <option value="" selected>All</option>
-                                <option value="{{i.toLowerCase()}}" data-ng-repeat="i in categories">{{i | capitalize}}</option>
+                                <option value="{{i}}" data-ng-repeat="i in categories">{{i | capitalize}}</option>
                             </select>
                         </div>
                     </div>
@@ -30,25 +30,26 @@
 </div>      
 <!-- Jumbotron end -->
 
-
-<div class="row my-3">
-    <div class="row col-md-12">
-        <h1>{{page.content.heading}}</h1>
-    </div>
-    
-    <!-- Products start -->
-    <div class="row">
-        <div class="card-columns">
-            <card 
-                data-ng-repeat="product in products | filter : obj" 
-                anchor="{{product.anchor}}" 
-                imagelink="{{product.imagelink}}"
-                title="{{product.title}}"
-                desc="{{product.description}}"
-                link="{{product.productlink}}"
-                >
-            </card>
+<div class="container">
+    <div class="row my-3">
+        <div class="row col-md-12">
+            <h1>{{page.content.heading}}</h1>
         </div>
-    </div>
-    <!-- Products end -->
+        
+        <!-- Products start -->
+        <div class="row">
+            <div class="card-columns">
+                <card 
+                    data-ng-repeat="product in products | filter : obj" 
+                    anchor="{{product.anchor}}" 
+                    imagelink="{{product.imagelink}}"
+                    title="{{product.title}}"
+                    desc="{{product.description}}"
+                    link="{{product.productlink}}"
+                    >
+                </card>
+            </div>
+        </div>
+        <!-- Products end -->
+    </div>    
 </div>

@@ -1,34 +1,94 @@
-<section>
-    <!-- Header title start -->
-    <div class="row my-5">
-        <h1 class="col-md-12">{{page.header}}</h1>
-    </div>
-    <!-- Header title end -->
-
-    <!-- Content Start -->
-    <!-- Search Form Start -->
-    <div data-ng-if="showsearchform">
-        <form data-ng-submit = "searchOrder(trackingid)" novalidate>
-            <div class="form-row align-items-center">
-                <div class="col-sm-8 my-1">
-                    <label class="sr-only" for="ordertracking">{{page.form.label}}</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">{{page.form.label}}</div>
+<div class="container">
+    <section>
+        <!-- Header title start -->
+        <div class="row my-5">
+            <h1 class="col-md-12">{{page.header}}</h1>
+        </div>
+        <!-- Header title end -->
+    
+        <!-- Content Start -->
+        <!-- Search Form Start -->
+        <div data-ng-if="showsearchform">
+            <form data-ng-submit="searchOrder(trackingid)" novalidate>
+                <div class="form-row align-items-center">
+                    <div class="col-sm-8 my-1">
+                        <label class="sr-only" for="ordertracking">{{page.form.label}}</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">{{page.form.label}}</div>
+                            </div>
+                            <input type="text" data-ng-model="trackingid" class="form-control" id="ordertracking"
+                                placeholder="">
                         </div>
-                        <input type="text" data-ng-model="trackingid" class="form-control" id="ordertracking" placeholder="">
+                    </div>
+                    <div class="col-auto my-1">
+                        <button type="submit" class="btn btn-primary">Search</button>
                     </div>
                 </div>
-                <div class="col-auto my-1">
-                    <button type="submit" class="btn btn-primary">Search</button>
+                <small class="text-danger">{{error}}</small>
+            </form>
+        </div>
+        <!-- Search Form end -->
+    
+        <div data-ng-if="showOrderDetails">
+            <h2>{{page.orderdetails.header}} - <strong>{{order.orderid}}</strong></h2>
+            <div class="card-deck my-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{page.orderdetails.customer.header}}</h5>
+                        <div class="card-body">
+                            <div class="row my-3">
+                                <div class="col-6">
+                                    <span>{{page.orderdetails.customer.firstnamelabel}}: </span>
+                                </div>
+                                <div class="col-6">
+                                    <strong>{{order.customer.firstname}}</strong>
+                                </div>
+                            </div>
+    
+                            <div class="row my-3">
+                                <div class="col-6">
+                                    <span>{{page.orderdetails.customer.lastnamelabel}}: </span>
+                                </div>
+                                <div class="col-6">
+                                    <strong>{{order.customer.lastname}}</strong>
+                                </div>
+                            </div>
+    
+                            <div class="row my-3">
+                                <div class="col-6">
+                                    <span>{{page.orderdetails.customer.phonelabel}}: </span>
+                                </div>
+                                <div class="col-6">
+                                    <strong>{{order.customer.phone}}</strong>
+                                </div>
+                            </div>
+    
+                            <div class="row my-3">
+                                <div class="col-6">
+                                    <span>{{page.orderdetails.customer.emaillabel}}: </span>
+                                </div>
+                                <div class="col-6">
+                                    <strong>{{order.customer.email}}</strong>
+                                </div>
+                            </div>
+    
+                            <p>{{page.orderdetails.customer.commentlabel}}:</p> 
+                            <p><strong>{{order.customer.comments}}</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{page.orderdetails.product.header}} - <strong>{{order.product.title}}</strong></h5>
+                        <p class="card-text">
+                            <a href="{{order.product.productlink}}" class="btn btn-outline-info">More Info</a>
+                        </p>
+                    </div>
+                    <img data-ng-src="{{order.product.imagelink}}" class="card-img-bottom" alt="...">               
                 </div>
             </div>
-        </form>
-    </div>
-    <!-- Search Form end -->
-
-    <div data-ng-if="orderdetails">
-
-    </div>
-    <!-- Content End -->
-</section>
+        </div>
+        <!-- Content End -->
+    </section>
+</div>
